@@ -19,3 +19,23 @@ rgr.fit(trainTIKTOK,trainINSTAGRAM)
 
 print(rgr.coef_)
 print(rgr.intercept_)
+
+def future(data1,intercept,slope):
+  return data1 * slope + intercept
+enginesizevar1 = 3.3 #liters
+ee = future(enginesizevar1,rgr.intercept_[0],rgr.coef_[0][0])
+print(ee)
+
+#check for acccuracy
+from sklearn.metrics import r2_score as rs
+testTIKTOK = np.array(testdata[['ENGINESIZE']])
+testINSTAGRAM = np.array(testdata[['CO2EMISSIONS']])
+
+ra = rgr.predict(testTIKTOK)
+
+absolute = np.mean(np.absolute(ra - testINSTAGRAM))
+
+r2score= rs(ra, testINSTAGRAM)
+print(r2score)
+print(absolute)
+

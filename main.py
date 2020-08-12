@@ -36,6 +36,7 @@ ra = rgr.predict(testTIKTOK)
 absolute = np.mean(np.absolute(ra - testINSTAGRAM))
 
 r2score= rs(ra, testINSTAGRAM)
-print(r2score)
 print(absolute)
+print(r2score)
+
 
